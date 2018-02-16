@@ -1,8 +1,20 @@
+#Start docker machine on local machine (Start Virtualbox first!)
+
 docker-machine start dev
 ….
 docker-machine ip dev  #should be 192.168.99.100
 eval "$(docker-machine env dev)”
 docker-compose -f ./docker/docker-compose.yml up
+
+#Now ssh to control and start ssh-agent for password-less ssh connections
+
 ssh control
 eval $(ssh-agent)
 ssh-add
+
+#To bring down the environment gracefully from local machine
+
+#On launching terminal 
+ctrl+c
+docker-compose -f docker/docker-compose.yml down
+docker-machine stop dev
