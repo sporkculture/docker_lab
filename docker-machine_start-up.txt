@@ -1,0 +1,8 @@
+docker-machine start dev
+….
+docker-machine ip dev  #should be 192.168.99.100
+eval "$(docker-machine env dev)”
+docker-compose -f ./docker/docker-compose.yml up
+ssh control
+eval $(ssh-agent)
+ssh-add
